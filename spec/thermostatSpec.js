@@ -81,13 +81,13 @@ describe("Thermostat", function () {
         for (var i = 1; i <= temp_diff + 1; i++) {
           thermostat.down();
         }
-        expect(thermostat.energyUsage()).toEqual("low usage");
+        expect(thermostat.energyUsage()).toEqual("low-usage");
       });
     });
 
     describe("when the temperature is at or above medium usage limit and below PSM maximum limit", function () {
       it("displays medium usage", function () {
-        expect(thermostat.energyUsage()).toEqual("medium usage");
+        expect(thermostat.energyUsage()).toEqual("medium-usage");
       });
     });
 
@@ -97,7 +97,7 @@ describe("Thermostat", function () {
         for (var i = 1; i <= temp_diff; i++) {
           thermostat.up();
         }
-        expect(thermostat.energyUsage()).toEqual("high usage");
+        expect(thermostat.energyUsage()).toEqual("high-usage");
       });
     });
   });

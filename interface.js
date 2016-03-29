@@ -32,6 +32,8 @@ $(document).ready(function () {
 
   function updateTemperature() {
     $("#temp").text(thermostat.showTemperature());
+    // $("#temp").addClass(thermostat.energyUsage());
+    }
   };
 
 });

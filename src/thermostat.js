@@ -63,10 +63,10 @@ Thermostat.prototype.switchPowerSavingOn = function () {
 
 Thermostat.prototype.energyUsage = function () {
   if (this.showTemperature() < this.MEDIUM_USAGE_LIMIT) {
-    return "low usage";
+    return "low-usage";
   }
   if (this.showTemperature() >= this.MAX_TEMP_PSM_ON) {
-    return "high usage";
+    return "high-usage";
   }
-  return "medium usage";
+  return "medium-usage";
 };
