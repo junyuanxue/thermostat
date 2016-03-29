@@ -1,16 +1,37 @@
 $(document).ready(function () {
   var thermostat = new Thermostat();
 
-  $("#temp").prepend(thermostat.showTemperature());
+  updateTemperature()
 
   $("#temp-up").click(function () {
     thermostat.up();
-    $("#temp").text(thermostat.showTemperature());
+    updateTemperature();
   });
 
   $("#temp-down").click(function () {
     thermostat.down();
-    $("#temp").text(thermostat.showTemperature());
+    updateTemperature();
   });
+
+  $("#reset-temp").click(function () {
+    thermostat.resetTemperature();
+    updateTemperature();
+  });
+
+  $("#psm-on").click(function () {
+    thermostat.switchPowerSavingOn();
+    $("#psm").text("On");
+    updateTemperature();
+  });
+
+  $("#psm-off").click(function () {
+    thermostat.switchPowerSavingOff();
+    $("#psm").text("Off");
+    updateTemperature();
+  });
+
+  function updateTemperature() {
+    $("#temp").text(thermostat.showTemperature());
+  };
 
 });
