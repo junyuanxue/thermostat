@@ -7,25 +7,26 @@ describe("Thermostat", function () {
     thermostat = new Thermostat();
   });
 
-  it("starts at 20 degrees", function () {
-    expect(thermostat.showTemperature()).toEqual(20);
+  it("starts at default temperature", function () {
+    expect(thermostat.showTemperature()).toEqual(thermostat.DEFAULT_TEMP);
   });
 
   it("increases the temperature with the up button", function () {
     thermostat.up();
-    expect(thermostat.showTemperature()).toEqual(21);
+    expect(thermostat.showTemperature()).toEqual(thermostat.DEFAULT_TEMP + 1);
   });
 
   it("decreases the temperature with the down button", function () {
     thermostat.down();
-    expect(thermostat.showTemperature()).toEqual(19);
+    expect(thermostat.showTemperature()).toEqual(thermostat.DEFAULT_TEMP - 1);
   });
 
-  it("minimum temperature is 10 degrees", function () {
-    for (var i = 1; i <= 11; i++) {
+  it("cannot decrease temperature once reaching minimum temperature", function () {
+    const temp_diff = thermostat.DEFAULT_TEMP - thermostat.MIN_TEMP
+    for (var i = 1; i <= temp_diff + 1; i++) {
       thermostat.down();
     }
-    expect(thermostat.showTemperature()).toEqual(10);
+    expect(thermostat.showTemperature()).toEqual(thermostat.MIN_TEMP);
   });
 
   it("has power saving mode by default", function () {
@@ -43,18 +44,25 @@ describe("Thermostat", function () {
     expect(thermostat.isPowerSaving()).toBe(true);
   });
 
-  it("maximum temperature is 25 degrees when power saving mode is on", function () {
-    for (var i = 1; i <= 6; i++) {
+  it("has a maximum temperature when power saving mode is on", function () {
+    const temp_diff = thermostat.MAX_TEMP_PSM_ON - thermostat.DEFAULT_TEMP
+    for (var i = 1; i <= temp_diff + 1; i++) {
       thermostat.up();
     }
-    expect(thermostat.showTemperature()).toEqual(25);
+    expect(thermostat.showTemperature()).toEqual(thermostat.MAX_TEMP_PSM_ON);
   });
 
-  it("maximum temperature is 32 degrees when power saving mode is off", function () {
+  it("has a higher maximum temperature when power saving mode is off", function () {
     thermostat.switchPowerSavingOff();
-    for (var i = 1; i <= 13; i++) {
+    const temp_diff = thermostat.MAX_TEMP_PSM_OFF - thermostat.DEFAULT_TEMP
+    for (var i = 1; i <= temp_diff + 1; i++) {
       thermostat.up();
     }
-    expect(thermostat.showTemperature()).toEqual(32);
+    expect(thermostat.showTemperature()).toEqual(thermostat.MAX_TEMP_PSM_OFF);
+  });
+
+  it("can reset temperature to default", function () {
+    thermostat.resetTemperature();
+    expect(thermostat.showTemperature()).toEqual(thermostat.DEFAULT_TEMP);
   });
 });

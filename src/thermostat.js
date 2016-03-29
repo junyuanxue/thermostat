@@ -1,10 +1,11 @@
 "use strict";
 
 function Thermostat() {
-  this._temperature = 20;
+  this.DEFAULT_TEMP = 20;
   this.MIN_TEMP = 10;
   this.MAX_TEMP_PSM_ON = 25;
   this.MAX_TEMP_PSM_OFF = 32;
+  this._temperature = this.DEFAULT_TEMP;
   this._powerSaving = true;
 };
 
@@ -28,6 +29,10 @@ Thermostat.prototype.down = function () {
   else {
     this._temperature -= 1;
   }
+};
+
+Thermostat.prototype.resetTemperature = function () {
+  this._temperature = this.DEFAULT_TEMP;
 };
 
 Thermostat.prototype.isMinTemperature = function () {
