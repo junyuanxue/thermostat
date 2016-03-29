@@ -60,3 +60,13 @@ Thermostat.prototype.switchPowerSavingOff = function () {
 Thermostat.prototype.switchPowerSavingOn = function () {
   this._powerSaving = true;
 };
+
+Thermostat.prototype.energyUsage = function () {
+  if (this.showTemperature() < this.MEDIUM_USAGE_LIMIT) {
+    return "low usage";
+  }
+  if (this.showTemperature() >= this.MAX_TEMP_PSM_ON) {
+    return "high usage";
+  }
+  return "medium usage";
+};
