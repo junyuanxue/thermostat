@@ -4,7 +4,8 @@ function Thermostat() {
   this.DEFAULT_TEMP = 20;
   this.MIN_TEMP = 10;
   this.MAX_TEMP_PSM_ON = 25;
-  this.MAX_TEMP_PSM_OFF = 32;
+  this.MAX_TEMP_PSM_OFF = 32
+  this.MEDIUM_USAGE_LIMIT = 18;
   this._temperature = this.DEFAULT_TEMP;
   this._powerSaving = true;
 };
