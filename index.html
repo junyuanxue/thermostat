@@ -2,14 +2,19 @@
 <html>
 <head>
   <title>Thermostat</title>
+  <script src="jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="src/thermostat.js"></script>
+  <script type="text/javascript" src="interface.js"></script>
 </head>
 
 <body>
-  <h1>degrees</h1>
+
+
+  <h1><span id="temp"></span> &deg;C</h1>
   <p>
-    <button id="temperature-up">+</button>
-    <button id="temperature-down">-</button>
-    <button id="reset-temperature">reset</button>
+    <button id="temp-up">+</button>
+    <button id="temp-down">-</button>
+    <button id="reset-temp">reset</button>
     <button id="psm-on">PSM On</button>
     <button id="psm-off">PSM Off</button>
   </p>
