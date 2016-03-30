@@ -42,13 +42,8 @@ $ ( document ).ready(function () {
     $ ("img").attr("src", "https://media.giphy.com/media/ffWXNxlfEcrHG/giphy.gif");
   };
 
-  $.ajax({
-    url : "http://api.wunderground.com/api/cd59938254e12ba3/geolookup/conditions/forecast/q/London.json",
-    dataType : "jsonp",
-    success : function(parsed_json) { var location = parsed_json['location']['city'];
-      var temp_c = parsed_json['current_observation']['temp_c'];
-      $( "#api" ).text("Current temperature in " + location + " is: " + temp_c);
-    }
-  });
+  $.get( 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=3a6bc93def461093f7bebf5f7e4cc1bf&units=metric', function(data) {
+        $('#current-temperature').text(data.main.temp);
+    });
 
 });
