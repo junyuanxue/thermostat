@@ -1,5 +1,5 @@
 $ ( document ).ready(function () {
-  thermostat = new Thermostat()
+  var thermostat = new Thermostat()
 
   $('#city-name').text("CATLAND");
 
@@ -54,6 +54,5 @@ $ ( document ).ready(function () {
           $('#current-temperature').text(data.main.temp);
       });
   });
-
 
 });
