@@ -66,5 +66,25 @@ describe('Thermostat', function() {
     })
   })
 
+  describe ("#display color", function(){
+
+
+    it('green when current temperature is <=18', function(){
+      thermostat.temperature = 16
+      expect(thermostat.displayColor()).toEqual('green');
+    })
+
+    it('yellow when current temperature is > 18 <= 25', function(){
+      thermostat.temperature = 22
+      expect(thermostat.displayColor()).toEqual('yellow');
+    })
+
+    it('red when current temperature is > 25 ', function(){
+      thermostat.temperature = 28
+      expect(thermostat.displayColor()).toEqual('red');
+    })
+
+  })
+
 
 });

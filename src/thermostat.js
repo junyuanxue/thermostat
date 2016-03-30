@@ -2,6 +2,7 @@ function Thermostat(){
   this.temperature = 20;
   this.minTemp = 10;
   this.isPowerSaving = true;
+  this.thermostatDisplay = 'yellow';
 
 }
 
@@ -39,3 +40,17 @@ Thermostat.prototype.switchModePowerSaving = function() {
 Thermostat.prototype.tempReset = function() {
     this.temperature = 20;
 }
+
+Thermostat.prototype.displayColor = function() {
+  if(this.temperature <= 18) {return 'green';}
+  if(this.temperature <= 25) {return 'yellow';}
+  if(this.temperature > 25) {return 'red';}
+}
+
+
+
+
+
+
+
+
