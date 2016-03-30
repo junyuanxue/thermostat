@@ -27,5 +27,11 @@ Thermostat.prototype.maxTemp = function(){
   if(this.isPowerSaving === true) {return 25;}
     else
       {return 32;}
+}
 
+Thermostat.prototype.switchModePowerSaving = function() {
+  if (this.isPowerSaving === true) 
+    {this.isPowerSaving=false;}
+  else
+    {this.isPowerSaving=true;}
 }

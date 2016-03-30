@@ -40,11 +40,20 @@ describe('Thermostat', function() {
       spyOn(thermostat, 'currentTemperature').and.returnValue(25);
       expect(function(){thermostat.increaseTemperature()}).toThrow('Max. temp reached');
     });
-  });
+  
 
     it('max temp is 32 if power saving mode off', function(){
       thermostat.isPowerSaving = false
       expect(thermostat.maxTemp()).toEqual(32);
     })
 
+    it('power saving should be on by default', function() {
+      expect(thermostat.isPowerSaving).toEqual(true);
+    })
+
+    it(' should be false if turned off', function(){
+      thermostat.switchModePowerSaving()
+      expect(thermostat.isPowerSaving).toEqual(false);
+    })
+  });
 });
