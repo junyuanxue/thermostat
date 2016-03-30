@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+<center>
 <head>
+  <script src="jquery.js"></script>
   <script src="src/thermostat.js"></script>
+  <script src="interface.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css"></link>
 </head>
 <body>
-  <h1 id="temperature">Temperature:&deg;C</h1>
-  <h2 id="psm">Power Saving Mode:</h2>
-  <h2 id="energy-usage">Energy Usage:</h2>
+  <h1>Temperature: <span id="temperature"></span>&deg;C</h1>
+  <h2>Power Saving Mode: <span id="psm"></span></h2>
   <button id="increase">+</button>
   <button id="decrease">-</button>
   <button id="reset">reset</button>
