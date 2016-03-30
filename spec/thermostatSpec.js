@@ -19,7 +19,7 @@ describe('Thermostat', function() {
     })
   });
 
-    
+
   describe ('#Default temps', function(){
 
     it('default temperature 20', function() {
@@ -27,10 +27,18 @@ describe('Thermostat', function() {
     });
 
     it('thermostat thows error if temp is less than 10', function(){
-      spyOn(thermostat, 'currentTemperature').and.returnValue(9);
-      thermostat.decreaseTemperature()
+      spyOn(thermostat, 'currentTemperature').and.returnValue(10);
       expect(function(){thermostat.decreaseTemperature()}).toThrow('Min. temp reached');
 
     })
   });
+
+  describe ('#Power saving mode', function() {
+
+    it('max temp 25 if power saving mode on', function(){
+      spyOn(thermostat, 'currentTemperature').and.returnValue(25);
+      expect(function(){thermostat.increaseTemperature()}).toThrow('Max. temp reached');
+    });
+  });
+
 });
