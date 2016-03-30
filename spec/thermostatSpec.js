@@ -36,9 +36,15 @@ describe('Thermostat', function() {
   describe ('#Power saving mode', function() {
 
     it('max temp 25 if power saving mode on', function(){
+
       spyOn(thermostat, 'currentTemperature').and.returnValue(25);
       expect(function(){thermostat.increaseTemperature()}).toThrow('Max. temp reached');
     });
   });
+
+    it('max temp is 32 if power saving mode off', function(){
+      thermostat.isPowerSaving = false
+      expect(thermostat.maxTemp()).toEqual(32);
+    })
 
 });
