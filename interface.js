@@ -3,7 +3,7 @@ $ ( document ).ready(function () {
 
   $ ( "#temperature" ).text(thermostat.temperature);
 
-  $ ( "#temperature" ).addClass(thermostat.energyUsage());
+  $ ( "#temperature" ).attr("class", thermostat.energyUsage());
 
   $ ( "#psm" ).text("On");
 
@@ -34,7 +34,7 @@ $ ( document ).ready(function () {
 
   updateTemperature = function() {
     $ ( "#temperature" ).text(thermostat.temperature);
-    $ ( "#temperature" ).addClass(thermostat.energyUsage());
+    $ ( "#temperature" ).attr("class", thermostat.energyUsage());
   };
 
 });
