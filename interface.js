@@ -1,9 +1,14 @@
 $ ( document ).ready(function () {
   thermostat = new Thermostat()
 
+  $ ("html").mouseenter(function () {
+    $(this).css("cursor", "url(http://orig14.deviantart.net/1586/f/2011/191/2/1/bda__kitty_cat_icon_by_sabakugaara-d3lnz58.gif), auto");
+  });
+
   $ ( "#temperature" ).text(thermostat.temperature);
 
-  $ ( "#temperature" ).addClass(thermostat.energyUsage());
+  $ ( "#temperature" ).attr("class",thermostat.energyUsage());
+
 
   $ ( "#psm" ).text("On");
 
@@ -34,7 +39,8 @@ $ ( document ).ready(function () {
 
   updateTemperature = function() {
     $ ( "#temperature" ).text(thermostat.temperature);
-    $ ( "#temperature" ).addClass(thermostat.energyUsage());
+    $ ( "#temperature" ).attr("class", thermostat.energyUsage());
+    $ ("img").attr("src", "https://media.giphy.com/media/ffWXNxlfEcrHG/giphy.gif");
   };
 
 });
