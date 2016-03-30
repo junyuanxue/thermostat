@@ -18,11 +18,13 @@ $ ( document ).ready(function () {
   $ ( "#increase" ).click(function () {
     thermostat.increase();
     updateTemperature();
+    $ ("img").attr("src", "https://media.giphy.com/media/ffWXNxlfEcrHG/giphy.gif");
   });
 
   $ ( "#decrease" ).click(function () {
     thermostat.decrease();
     updateTemperature();
+    $ ("img").attr("src", "https://s-media-cache-ak0.pinimg.com/736x/4b/1f/89/4b1f8997747f120e3de8b0f076d6719f.jpg");
   });
 
   $ ( "#reset" ).click(function () {
@@ -43,7 +45,6 @@ $ ( document ).ready(function () {
   updateTemperature = function() {
     $ ( "#temperature" ).text(thermostat.temperature);
     $ ( "#temperature" ).attr("class", thermostat.energyUsage());
-    $ ("img").attr("src", "https://media.giphy.com/media/ffWXNxlfEcrHG/giphy.gif");
   };
 
   $( '#select-city' ).submit(function(event) {
@@ -51,8 +52,47 @@ $ ( document ).ready(function () {
     var city = $('#current-city').val();
     $( "#city-name" ).text(city);
     $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=3a6bc93def461093f7bebf5f7e4cc1bf&units=metric', function(data) {
-          $('#current-temperature').text(data.main.temp);
+          $ ( '#current-temperature' ).text(data.main.temp);
       });
   });
 
+  $(window).load(function () {
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:4567/temperature",
+    }).then(function(data) {
+      console.log(data);
+      thermostat.temperature = parseInt(data);
+      $ ( "#temperature" ).attr("class", thermostat.energyUsage());
+      $ ( "#temperature" ).text(parseInt(data));
+    });
+
+    // get ("http://localhost:4567/temperature", function(data) {
+    //   $ ( "#temperature" ).text(data);
+    //   console.log(data)
+    // });
+    // $.getJSON("http://localhost:4567/temperature", function(data) {
+    //   $.each (data, function(key, val) {
+    //     $ ( "#temperature" ).text(val);
+    //     // var temperature = val;
+    //   })
+    //   // $ ( "#temperature" ).text(temperature);
+    // });
+    //
+  });
+
+
+  $(window).unload(function () {
+    var currentTemp = thermostat.temperature;
+    console.log(currentTemp);
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:4567/temperature",
+      async: false,
+      data: { "temperature": currentTemp.toString() }
+    });
+    // $.postJSON("http://localhost:4567/temperature", function(data) {
+    //   $ ( "#temperature" ).html(data);
+    // });
+  });
 });
