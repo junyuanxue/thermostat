@@ -1,6 +1,10 @@
 $ ( document ).ready(function () {
   thermostat = new Thermostat()
 
+  $('#city-name').text("CATLAND");
+
+  $('#current-temperature').text("100000000");
+
   $ ("html").mouseenter(function () {
     $(this).css("cursor", "url(http://orig14.deviantart.net/1586/f/2011/191/2/1/bda__kitty_cat_icon_by_sabakugaara-d3lnz58.gif), auto");
   });
@@ -42,8 +46,14 @@ $ ( document ).ready(function () {
     $ ("img").attr("src", "https://media.giphy.com/media/ffWXNxlfEcrHG/giphy.gif");
   };
 
-  $.get( 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=3a6bc93def461093f7bebf5f7e4cc1bf&units=metric', function(data) {
-        $('#current-temperature').text(data.main.temp);
-    });
+  $( '#select-city' ).submit(function(event) {
+    event.preventDefault();
+    var city = $('#current-city').val();
+    $( "#city-name" ).text(city);
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=3a6bc93def461093f7bebf5f7e4cc1bf&units=metric', function(data) {
+          $('#current-temperature').text(data.main.temp);
+      });
+  });
+
 
 });
