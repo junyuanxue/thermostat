@@ -7,12 +7,7 @@ $ ( document ).ready(function () {
 
   $ ( "#temperature" ).text(thermostat.temperature);
 
-<<<<<<< HEAD
-  $ ( "#temperature" ).attr("class", thermostat.energyUsage());
-=======
   $ ( "#temperature" ).attr("class",thermostat.energyUsage());
-
->>>>>>> c9a9b2776191d6a11a8812ce2a00d6d794ce8ff9
 
   $ ( "#psm" ).text("On");
 
@@ -44,10 +39,7 @@ $ ( document ).ready(function () {
   updateTemperature = function() {
     $ ( "#temperature" ).text(thermostat.temperature);
     $ ( "#temperature" ).attr("class", thermostat.energyUsage());
-<<<<<<< HEAD
-=======
     $ ("img").attr("src", "https://media.giphy.com/media/ffWXNxlfEcrHG/giphy.gif");
->>>>>>> c9a9b2776191d6a11a8812ce2a00d6d794ce8ff9
   };
 
   $.ajax({
