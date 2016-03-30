@@ -1,0 +1,55 @@
+describe('Thermostat', function() {
+  var thermostat;
+
+  beforeEach(function() {
+    thermostat = new Thermostat();
+  });
+
+  it('should start at 20 degrees', function(){
+    expect(thermostat.temperature).toEqual(20);
+  });
+
+  describe("change in temperature", function(){
+    it("can increase temperature", function(){
+      thermostat.increase();
+      expect(thermostat.temperature).toEqual(21);
+    });
+
+    it("can decrease temperature", function(){
+      thermostat.decrease();
+      expect(thermostat.temperature).toEqual(19);
+    });
+
+    it("cannot go below 10 degrees", function(){
+      for (var i = 1; i <= 11; i++) {
+        thermostat.decrease();
+      }
+      expect(thermostat.temperature).toEqual(10);
+    });
+  });
+
+  describe("has power saving mode", function(){
+    it("can be on", function(){
+      expect(thermostat.isPowerSaving).toBe(true);
+    });
+
+    it("can be switched off", function(){
+      thermostat.powerSavingOff();
+      expect(thermostat.isPowerSaving).toBe(false);
+    });
+
+    it("can be switched back on", function(){
+      thermostat.powerSavingOff();
+      thermostat.powerSavingOn();
+      expect(thermostat.isPowerSaving).toBe(true);
+    });
+
+    it("if on, temp should not go over 25 degress", function(){
+      for (var i = 1; i <= 6; i++) {
+        thermostat.increase();
+      }
+      expect(thermostat.temperature).toEqual(25);
+    });
+  });
+
+});
