@@ -16,7 +16,6 @@ class Thermostat < Sinatra::Base
   end
 
   post "/temperature" do
-    p params
     Temperature.create(temperature: params[:temperature].to_i)
   end
 

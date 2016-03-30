@@ -66,19 +66,6 @@ $ ( document ).ready(function () {
       $ ( "#temperature" ).attr("class", thermostat.energyUsage());
       $ ( "#temperature" ).text(parseInt(data));
     });
-
-    // get ("http://localhost:4567/temperature", function(data) {
-    //   $ ( "#temperature" ).text(data);
-    //   console.log(data)
-    // });
-    // $.getJSON("http://localhost:4567/temperature", function(data) {
-    //   $.each (data, function(key, val) {
-    //     $ ( "#temperature" ).text(val);
-    //     // var temperature = val;
-    //   })
-    //   // $ ( "#temperature" ).text(temperature);
-    // });
-    //
   });
 
 
@@ -91,8 +78,5 @@ $ ( document ).ready(function () {
       async: false,
       data: { "temperature": currentTemp.toString() }
     });
-    // $.postJSON("http://localhost:4567/temperature", function(data) {
-    //   $ ( "#temperature" ).html(data);
-    // });
   });
 });
