@@ -6,11 +6,7 @@ describe('Thermostat', function() {
     thermostat = new Thermostat();
   });
 
-  describe('#temperature', function() {
-
-    it('default temperature 20', function() {
-      expect(thermostat.currentTemperature()).toEqual(20);
-    });
+  describe('#temperature adjusters', function() {
 
     it('temperature up increase temperature by 1', function(){
       thermostat.increaseTemperature()
@@ -21,5 +17,20 @@ describe('Thermostat', function() {
       thermostat.decreaseTemperature()
       expect(thermostat.currentTemperature()).toEqual(19);
     })
-});
+  });
+
+    
+  describe ('#Default temps', function(){
+
+    it('default temperature 20', function() {
+      expect(thermostat.currentTemperature()).toEqual(20);
+    });
+
+    it('thermostat thows error if temp is less than 10', function(){
+      spyOn(thermostat, 'currentTemperature').and.returnValue(9);
+      thermostat.decreaseTemperature()
+      expect(function(){thermostat.decreaseTemperature()}).toThrow('Min. temp reached');
+
+    })
+  });
 });
