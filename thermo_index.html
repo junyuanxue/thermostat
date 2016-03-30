@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="src/thermostat.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+    function init() {
+      new Thermostat
+    }
+    window.onload = init;
+    </script>
+
+    <div style="width:300px; height:250px; background-color:yellow;margin:auto;margin-top: 20%">
+      <div style="margin:auto; margin-top:10%; ">
+        <input type='button' name='up' value='up' onclick='increaseTemperature();'>
+        <input type='button' name='down' value='down' onclick='decreaseTemperature();'>
+        <input type='button' name='reset' value='reset' onclick='tempReset();'>
+        <input type='button' name='mode' value='mode' onclick='switchModePowerSaving();'>
+        <input type='button' name='temp' value='temp' onclick='currentTemperature();'>
+      </div>
+
+      <div>
+        <script> 
+        //display temperature
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
