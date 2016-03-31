@@ -13,12 +13,16 @@
 
       <div id='color' style="width:800px; height:750px; margin:auto;margin-top: 10%">
         <div style="margin:auto; margin-top:10%; "></button>
-          <h2 id="temperature">temperature</h2>
+          <h2>Thermostat Temperature: <span id="temperature"></span></h2>
           <button  id='up'>+</button>
           <button  id='down'>-</button>
           <button  id='reset'>RESET</button>
           <button  id='mode'>TURN MODE OFF</button>
           <p id='mode_display'>Energy Saving Mode: ON</p>
+          <form id="select-city">
+            <input id="current-city" type="text" placeholder="Enter a city"></input>
+            <input type="submit"></input>
+          <p>Current City Temperature: <span id='current_temperature'></span></p>
           <p id='color-text' style="font-size:200px; padding-bottom:50px">YELLOW<p>
         </div>
 
