@@ -26,13 +26,13 @@ $(document).ready(function(){
 
   function updateTemperature() {
     $('#temperature').text(thermostat.temperature);
-  //   if(thermostat.displayColor() === 'green') {
-  //     $('#color').css('background-color', 'green')
-  //   } else if(thermostat.displayColor() === 'yellow') {
-  //     $('#color').css('background-color', 'yellow')
-  //   } else {
-  //     $('#color').css('background-color', 'red')
-  // }
+    if(thermostat.displayColor() === 'green') {
+      $('#color-text').text('GREEN')
+    } else if(thermostat.displayColor() === 'yellow') {
+      $('#color-text').text('YELLOW')
+    } else {
+      $('#color-text').text('RED')
+  }
 
     $('#color').attr('class', thermostat.displayColor());
   }
