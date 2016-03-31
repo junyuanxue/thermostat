@@ -15,17 +15,25 @@ $(document).ready(function(){
   });
   $('#mode').click(function(){
     thermostat.switchModePowerSaving();
+    if(thermostat.isPowerSaving === true) {
+    $('#mode').text('TURN MODE ON');
+    $('#mode_display').text('Energy Saving Mode: OFF');
+  } else {
+    $('#mode').text('TURN MODE OFF');
+    $('#mode_display').text('Energy Saving Mode: ON');
+  }
   });
+
   function updateTemperature() {
     $('#temperature').text(thermostat.temperature);
-    if(thermostat.displayColor() === 'green') {
-      $('#temperature').css('color', 'green')
-    } else if(thermostat.displayColor() === 'yellow') {
-      $('#temperature').css('color', 'yellow')
-    } else {
-      $('#temperature').css('color', 'red')
-  }
-    }
+  //   if(thermostat.displayColor() === 'green') {
+  //     $('#color').css('background-color', 'green')
+  //   } else if(thermostat.displayColor() === 'yellow') {
+  //     $('#color').css('background-color', 'yellow')
+  //   } else {
+  //     $('#color').css('background-color', 'red')
+  // }
 
-    // $('#temperature').attr('', thermostat.displayColor());
+    $('#color').attr('class', thermostat.displayColor());
+  }
 })
