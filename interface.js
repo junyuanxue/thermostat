@@ -5,7 +5,7 @@ $(document).ready(function(){
 
   $(window).unload(function (){
     var temperature = thermostat.temperature;
-    var city = $('#current-city').val();
+    var city = $('#city_name').text();
     $.ajax({
       type: "POST",
       url: 'http://localhost:4567/temperature',
@@ -66,6 +66,7 @@ $(document).ready(function(){
   function getCityTemp(city){
     $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=2e925c65c1b89a2ba47e82955d1e0efa&units=metric', function(data) {
       $('#current_temperature').text(data.main.temp);
+      $('#city_name').text(city);
     });
   };
 

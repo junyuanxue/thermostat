@@ -17,7 +17,7 @@ enable :sessions
                      city: session[:city]})
     else
       JSON.generate({temperature: 20,
-                     city: session[:city]})
+                     city: nil})
     end
   end
 
