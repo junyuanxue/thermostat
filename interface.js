@@ -3,12 +3,14 @@ $(document).ready(function(){
   updateTemperature();
   displayTemp();
 
-  $('button').click(function(){
+  $(window).unload(function (){
     var temperature = thermostat.temperature;
+    var city = $('#current-city').val();
     $.ajax({
       type: "POST",
       url: 'http://localhost:4567/temperature',
-      data: {'temperature': temperature},
+      data: {'temperature': temperature,
+             'city': city},
       crossDomain: true,
       async: false
     });
@@ -20,6 +22,10 @@ $(document).ready(function(){
     success: function(data) {
       console.log(data)
       $('#temperature').text(data.temperature);
+      thermostat.temperature = data.temperature;
+      updateTemperature();
+      console.log(data.city);
+      getCityTemp(data.city);
     },
     dataType: 'json',
     crossDomain: true,
@@ -53,11 +59,15 @@ $(document).ready(function(){
     $('#submit').click(function(event) {
       event.preventDefault();
       var city = $('#current-city').val();
-      $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=2e925c65c1b89a2ba47e82955d1e0efa&units=metric', function(data) {
-        $('#current_temperature').text(data.main.temp);
-      });
+      getCityTemp(city);
     })
-  }
+  };
+
+  function getCityTemp(city){
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=2e925c65c1b89a2ba47e82955d1e0efa&units=metric', function(data) {
+      $('#current_temperature').text(data.main.temp);
+    });
+  };
 
   function updateTemperature() {
     $('#temperature').text(thermostat.temperature);
@@ -68,7 +78,6 @@ $(document).ready(function(){
     } else {
       $('#color-text').text('RED')
   }
-
     $('#color').attr('class', thermostat.displayColor());
-  }
-})
+  };
+});
