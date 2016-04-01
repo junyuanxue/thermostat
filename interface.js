@@ -2,6 +2,29 @@ $(document).ready(function(){
   var thermostat = new Thermostat();
   updateTemperature();
   displayTemp();
+
+  $('button').click(function(){
+    var temperature = thermostat.temperature;
+    $.ajax({
+      type: "POST",
+      url: 'http://localhost:4567/temperature',
+      data: {'temperature': temperature},
+      crossDomain: true,
+      async: false
+    });
+  });
+
+  $.ajax({
+    type: "GET",
+    url: 'http://localhost:4567/temperature',
+    success: function(data) {
+      console.log(data)
+      $('#temperature').text(data.temperature);
+    },
+    dataType: 'json',
+    crossDomain: true,
+  })
+
   $('#up').click(function(){
     thermostat.increaseTemperature();
   updateTemperature();
