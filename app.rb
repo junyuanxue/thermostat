@@ -11,7 +11,6 @@ enable :sessions
 
   get '/temperature' do
     response.headers['Access-Control-Allow-Origin'] = '*'
-    p session[:city]
     if session[:temperature]
       JSON.generate({temperature: session[:temperature],
                      city: session[:city]})
@@ -24,7 +23,7 @@ enable :sessions
   post '/temperature' do
     response.headers['Access-Control-Allow-Origin'] = '*'
     session[:temperature] = params[:temperature]
-    p session[:city] = params[:city]
+    session[:city] = params[:city]
   end
 
   # start the server if ruby file executed directly

@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var thermostat = new Thermostat();
+
   updateTemperature();
   displayTemp();
 
@@ -20,39 +21,39 @@ $(document).ready(function(){
     type: "GET",
     url: 'http://localhost:4567/temperature',
     success: function(data) {
-      console.log(data)
       $('#temperature').text(data.temperature);
       thermostat.temperature = data.temperature;
       updateTemperature();
-      console.log(data.city);
       getCityTemp(data.city);
     },
     dataType: 'json',
     crossDomain: true,
-  })
+  });
 
   $('#up').click(function(){
     thermostat.increaseTemperature();
   updateTemperature();
   });
+
   $('#down').click(function(){
     thermostat.decreaseTemperature();
   updateTemperature();
   });
+
   $('#reset').click(function(){
     thermostat.tempReset();
   updateTemperature();
   });
+
   $('#mode').click(function(){
     thermostat.switchModePowerSaving();
     if(thermostat.isPowerSaving === true) {
-    $('#mode').text('TURN MODE ON');
-    $('#mode_display').text('Energy Saving Mode: OFF');
-  } else {
-    $('#mode').text('TURN MODE OFF');
-    $('#mode_display').text('Energy Saving Mode: ON');
-  };
-
+      $('#mode').text('TURN MODE ON');
+      $('#mode_display').text('Energy Saving Mode: OFF');
+    } else {
+      $('#mode').text('TURN MODE OFF');
+      $('#mode_display').text('Energy Saving Mode: ON');
+    };
   });
 
   function displayTemp(city){
